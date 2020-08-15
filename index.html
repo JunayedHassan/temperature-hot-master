@@ -15,6 +15,9 @@
             background-size: cover;
             height: 100vh;
         }
+        .weather-status{
+            display: none;
+        }
     </style>
 </head>
 
@@ -33,9 +36,9 @@
                 <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
             </div>
             
-            <h1 id='areaName'>Dhaka</h1>
-            <h3><span id='temperature'>38.06</span>&deg;C</h3>
-            <h1 class="lead" id='weatherCondition'>Clouds</h1>
+            <h1 id='areaName'></h1>
+            <h3><span id='temperature'></span>&deg;C</h3>
+            <h1 class="lead" id='weatherCondition'></h1>
         </div>
     </div>
 
@@ -50,13 +53,16 @@ const getName = document.getElementById('getNameButton');
 const weatherName = document.getElementById('weatherCondition')
 
 getName.addEventListener('click', ()=>{
-        getWeatherReport(cityName.value);
-cityName.value = '';    
+    getWeatherReport(cityName.value);
+    cityName.value = '';   
+    document.querySelector('.weather-status').style.display = 'block'; 
 })
 
 cityName.addEventListener('keypress',(event)=>{
     if(event.keyCode == 13){
         getWeatherReport(cityName.value);
+        cityName.value = '';
+        document.querySelector('.weather-status').style.display = 'block';
     }
 });
 
